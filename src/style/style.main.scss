@@ -18,7 +18,7 @@ body {
     padding: 0.3em;
     padding-top: 10px;
     height: 90vh;
-    background: linear-gradient(#d7d2ee, #e2b0c0);
+    background: linear-gradient(#a7fab6, #c9f1f8);
     h2 {
         margin-top: 5px;
         color: #690f2b;
@@ -29,7 +29,7 @@ body {
     div#main-div-id {
         @include main-panel();
         width: 50vw;
-        background-color: #d7d2ee;
+        background-color: #abc3fb;
 
         button.db-action-button {
             cursor: pointer;
