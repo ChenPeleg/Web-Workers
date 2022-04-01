@@ -1,0 +1,36 @@
+{
+  "name": "web-workers",
+  "version": "1.0.0",
+  "description": "Web workers with JSDoc",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "deploy": "webpack --config ./config/webpack.config.prod.js",
+    "serve": "webpack-dev-server --config webpack.config.common.js  "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChenPeleg/Web-Workers.git"
+  },
+  "keywords": [
+    "web-workers"
+  ],
+  "author": "Chen Peleg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChenPeleg/Web-Workers/issues"
+  },
+  "homepage": "https://github.com/ChenPeleg/Web-Workers#readme",
+  "devDependencies": {
+    "webpack": "^5.71.0",
+    "webpack-cli": "^4.9.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.6.0",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.4.0",
+    "style-loader": "^3.3.1",
+    "webpack-dev-server": "^4.7.4",
+    "webpack-merge": "^5.8.0"
+  }
+}
