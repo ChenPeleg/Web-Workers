@@ -5,16 +5,16 @@ module.exports = {
     mode: "development",
     entry: "./src/app.js",
     output: {
-        
+
         filename: "main.[contenthash].js",
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'disk_build'),
         publicPath: './'
 
     },
     devtool: "eval-cheap-module-source-map",
     devServer: {
         static: {
-            directory: path.join(__dirname, 'build'),
+            directory: path.join(__dirname, 'disk_build'),
         },
         compress: true,
         port: 9000,
@@ -35,7 +35,7 @@ module.exports = {
 
     // file resolutions
     resolve: {
-        extensions: [  '.js'],
+        extensions: ['.js'],
     },
 
     // loaders

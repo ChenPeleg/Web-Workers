@@ -4,6 +4,7 @@ import './style/style.main.scss'
 class App {
     constructor() {
         this.page = new MainPage();
+
     }
     renderContent() {
         this.page.render()
