@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "command": "./pre-commit.version.sh",
+            "name": "Pre-commint",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
             "command": "npm run serve",
             "name": "Serve",
             "request": "launch",
