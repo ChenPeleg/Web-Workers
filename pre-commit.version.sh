@@ -4,54 +4,53 @@
 # Called by "git commit" with no arguments.  The hook should
 # exit with non-zero status after issuing an appropriate message if
 # it wants to stop the commit.
-#
-# To enable this hook, rename this file to "pre-commit".
-
-verFileName="version.json" 
-echo "Updating version..."
-echo ""
-stringvalue=`cat $verFileName`
-#myvariable="$(grep -o '^Hello \K[^ ]+(?= )' $stringvalue)"
-#echo "$stringvalue" | grep  '[1234567890]{1,10}\"\}'
-
-
-newVersion="{\"version\":\"1.1.0\"}"
-echo $newVersion > "$verFileName"
-
-#echo "124.23.30\"}" | grep -Eo '\.[0-9]{1,6}"}' 
-
-
-#OnlyMinorWithQuoats= "124.23.30\"}" | grep -Eo '\.[0-9]{1,6}"}' 
-#OnlyMinor=onlyMinorWithQuoats | grep -Eo '[0-9]{1,6}'  
-
-somevar="just a vars"
-# str="This is only minor version:"
-# echo $str
-echo "some variable"
-echo "$somevar"
-echo
-
-fileValue='124.23.30\"}'
-regex1='\.[0-9]{1,6}"}' 
-
-
-pat='[^0-9]+([0-9]+)'
-s='124.23.30\"}'
-[[ $s =~ $pat ]] # $pat must be unquoted
-
-result="${BASH_REMATCH[1]}"
  
-echo "regex result: $result"
+#  Variable Definitions
+
+ # The json file where the version change will be
+verFileName="version.json" 
+ # The json base text file if the file is empty or none existant
+defaultFileText="{\"version\":\"1.1.0\"}"
+# INCREMENT - increments minor version by 1
+# DATE - set minor version to todays date in mmdd format
+updateType="INCREMENT" 
 
 
-echo "minor version with punctuation:"
-echo "1: ${BASH_REMATCH[0]}"
-echo "2: ${OnlyMinorWithQuoats}${9}"
-echo
+fileText=`cat $verFileName`
+stringLength=${#fileText} 
+if ((stringLength < 3))  
+    then fileText="$defaultFileText"
+    echo "No version file found. Creating new file."
+fi
+  
+regMinorVer='"([0-9]{1,6}\.[0-9]{1,6})\.([0-9]{1,6})"'
+ 
+[[ $fileText =~ $regMinorVer ]]  
+
+echo "${BASH_REMATCH[0]}"
 
 
-echo "minor version:"
-echo "$onlyMinor"
-echo
+fullVersionText="${BASH_REMATCH[0]}"
+majorVersionText="${BASH_REMATCH[1]}"
+originalMinorVersion="${BASH_REMATCH[2]}"
+newMinorVersion=$((originalMinorVersion+1))
+
+# if [updateType -eq "DATE"]
+#     then newresult=1200
+# fi
+newMinorVersion=$newresult
+
+oldVersion="$majorVersionText.$originalMinorVersion"
+newVersion="$majorVersionText.$newMinorVersion"
+ 
+ echo 
+echo   
+echo "Minor version upgraded from $originalMinorVersion to $newMinorVersion"
+echo "New version $newVersion"
+echo 
+echo 
+ 
+echo "${fileText/"$oldVersion"/"$newVersion"}" > "$verFileName"
+
 
 read -t10 -n1 -r -p 'Press any key in the next ten seconds...' key
