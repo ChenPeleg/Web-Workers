@@ -33,10 +33,11 @@ export class BasicObservable {
 export class SimpleObservable {
     /** @type  {Object} observer */
     constructor(observerFunction) {
-        observerFunction(this);
+        this._observerFunction = observerFunction;
     }
     /**@type {(res:any)=>void} */
-    #subscription = (res) => { };
+    _subscription = (res) => { };
+    _observerFunction = (res) => { };
 
 
     /**
@@ -44,11 +45,12 @@ export class SimpleObservable {
      * @param {any} val 
      */
     next(val) {
-        this.#subscription(val)
+        this._subscription(val)
     }
     /** @type {(sub: Subscription)=>void} */
     subscribe(func) {
-        this.#subscription = func;
+        this._subscription = func;
+        this._observerFunction(this)
     }
 
 }

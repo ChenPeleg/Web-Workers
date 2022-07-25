@@ -26,7 +26,13 @@ btn.onclick = () => {
     obs.next('clicked' + (new Date()).getMilliseconds())
 }
 
-
+const dummyObesrver = new SimpleObservable(observer => {
+    observer.next('started')
+    setTimeout(() => { observer.next('finished after 2 seconds') }, 2000)
+})
+dummyObesrver.subscribe((res) => {
+    console.log(res)
+})
 obs.subscribe(res => console.log(res))
 
 //obs.s
