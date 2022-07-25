@@ -13,7 +13,7 @@ verFileName="version.json"
 defaultFileText="{\"version\":\"1.1.0\"}"
 # INCREMENT - increments minor version by 1
 # DATE - set minor version to todays date in mmdd format
-updateType="INCREMENT" 
+updateType="DATE"  
 
 
 fileText=`cat $verFileName`
@@ -26,24 +26,31 @@ fi
 regMinorVer='"([0-9]{1,6}\.[0-9]{1,6})\.([0-9]{1,6})"'
  
 [[ $fileText =~ $regMinorVer ]]  
-
-echo "${BASH_REMATCH[0]}"
-
-
+ 
 fullVersionText="${BASH_REMATCH[0]}"
 majorVersionText="${BASH_REMATCH[1]}"
 originalMinorVersion="${BASH_REMATCH[2]}"
 newMinorVersion=$((originalMinorVersion+1))
 
-# if [updateType -eq "DATE"]
-#     then newresult=1200
-# fi
-newMinorVersion=$newresult
+currentDate=$(date '+%m%d')
+ 
+echo "Date : $currentDate"
+
+# echo "full $fullVersionText"
+# echo "major $majorVersionText"
+# echo "minor $originalMinorVersion"
+
+
+ if  [ "$updateType" = "DATE" ]
+     then newMinorVersion="$currentDate"
+ fi
+ 
 
 oldVersion="$majorVersionText.$originalMinorVersion"
 newVersion="$majorVersionText.$newMinorVersion"
  
- echo 
+echo "original minor $originalMinorVersion"
+echo "new minor $newMinorVersion"
 echo   
 echo "Minor version upgraded from $originalMinorVersion to $newMinorVersion"
 echo "New version $newVersion"
