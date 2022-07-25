@@ -12,6 +12,17 @@ $delete: #c5e6e3;
     margin: 10px;
     @include elevationfn(5);
 }
+button.btn-main {
+    box-shadow: 2px 2px 4px black;
+    background-color: #6483bf;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 100ms ease-in-out;
+    &:hover {
+        background-color: #8397c7;
+    }
+}
 
 body {
     font-family: "Alef", sans-serif;
