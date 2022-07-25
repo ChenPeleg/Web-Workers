@@ -27,7 +27,7 @@ export class MainPage {
     /** @param {string} msg @returns {Promise<'OK'>} */
     postMsg(msg = "hi worker") {
         return new Promise((res, rej) => {
-            this.worker.postMessage(msg);
+            //  this.worker.postMessage(msg);
             res('OK')
         })
     }
