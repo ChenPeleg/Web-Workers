@@ -10,44 +10,26 @@
  * @description imitates 
  */
 export class BasicObservable {
-    constructor() {
-
-    }
-    /**@type {(res:any)=>void} */
-    #subscription = (res) => { };
-
-
-    /**
-     * @return {void}
-     * @param {any} val 
-     */
+    _subscription;
     next(val) {
-        this.#subscription(val)
+        if (this._subscription)
+            this._subscription(val)
     }
-    /** @type {(sub: Subscription)=>void} */
     subscribe(func) {
-        this.#subscription = func;
+        this._subscription = func;
     }
-
 }
+// actually this is called a Subject in Rsjx, because it
+// Has 
 export class SimpleObservable {
-    /** @type  {Object} observer */
     constructor(observerFunction) {
         this._observerFunction = observerFunction;
     }
-    /**@type {(res:any)=>void} */
-    _subscription = (res) => { };
-    _observerFunction = (res) => { };
-
-
-    /**
-     * @return {void}
-     * @param {any} val 
-     */
+    _subscription;
+    _observerFunction;
     next(val) {
         this._subscription(val)
     }
-    /** @type {(sub: Subscription)=>void} */
     subscribe(func) {
         this._subscription = func;
         this._observerFunction(this)

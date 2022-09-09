@@ -4,6 +4,9 @@
   "description": "Web workers with JSDoc",
   "homepage": "https://chenpeleg.github.io/Web-Workers",
   "homepage-gh-pages": "https://chenpeleg.github.io/Web-Workers",
+  "engines": {
+    "node": "12"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./webpack/webpack.prod.js",
